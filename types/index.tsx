@@ -1,3 +1,4 @@
+// Definisi Tipe Data Barang
 export interface Product {
   id: number;
   slug: string;
@@ -9,6 +10,14 @@ export interface Product {
   photos: string[]; 
 }
 
+export interface Category {
+  id: number;
+  slug: string;
+  nama: string;
+  deskripsi?: string;
+}
+
+// Definisi User
 export interface User {
   nama: string;
   email: string;
@@ -18,18 +27,20 @@ export interface User {
   whatsapp?: string;
 }
 
+// Item Keranjang (Turunan dari Product)
 export interface CartItem extends Product {
   quantity: number;
 }
 
+// Definisi Transaksi Pembayaran
 export interface Transaction {
   id: string;
   items: CartItem[];
   totalAmount: number;
-  paymentMethod: string; // BCA, MANDIRI, GOPAY, dll
+  paymentMethod: string;
   paymentStatus: 'pending' | 'paid' | 'expired';
-  createdAt: number; // Timestamp
-  expiryTime: number; // Timestamp 24 jam kemudian
+  createdAt: number;
+  expiryTime: number;
   customerInfo: {
     nama: string;
     email: string;
